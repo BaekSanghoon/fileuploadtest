@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="gd.fintech.fileuploadtest.mapper.BoardfileMapper">
+  <select id="selectBoardFileNameList" parameterType="int" resultType="String">
+  	SELECT boardfile_name
+  	FROM boardfile
+  	WHERE board_id= #{boardId}
+  </select>
+  
+  <select id="selectBoardFileName" parameterType="int" resultType="String">
+  	SELECT boardfile_name
+  	FROM boardfile
+  	WHERE boardfile_id= #{boardfileId}
+  </select>
+  <delete id="deleteBoardfileByboardfileId" parameterType="int">
+  		DELETE FROM boardfile
+  		WHERE boardfile_id=#{boardfileId}
+  </delete> 
+ 
+  <delete id="deleteBoardfile" parameterType="int">
+  		DELETE FROM boardfile
+  		WHERE board_id=#{boardId}
+  </delete>
+  
+  <insert id="insertBoardfile" parameterType="gd.fintech.fileuploadtest.vo.Boardfile">
+  		INSERT INTO boardfile(
+  			board_id,
+  			boardfile_name,
+  			boardfile_type,
+  			boardfile_size
+  		) values(
+  			#{boardId},
+  			#{boardfileName},
+  			#{boardfileType},
+  			#{boardfileSize}
+  		)
+  </insert>
+  </mapper>
